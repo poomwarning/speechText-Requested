@@ -9,12 +9,17 @@ public class SearchAnimation : MonoBehaviour
     private Animator anim;
     public InputField inputText;
 
+    public Text messageText;
+
     void Start()
     {
         anim = GetComponent<Animator>();
         anim.SetTrigger("Start");
 
         StartCoroutine(CheckAndReturnToStart());
+
+        messageText.gameObject.SetActive(false);
+
 
     }
 
@@ -52,12 +57,12 @@ public class SearchAnimation : MonoBehaviour
                 anim.SetTrigger("Sick");
 
             }
-            else if (inputText.text == "ใช่")
+            else if (inputText.text == "ใช่" || inputText.text == "ถูกต้อง" || inputText.text == "ใช่แล้ว" || inputText.text == "ใช่เลย")
             { 
                 anim.SetTrigger("Yes");
 
             }
-            else if (inputText.text == "ไม่ใช่")
+            else if (inputText.text == "ไม่ใช่" || inputText.text == "ไม่ใช่นะ" || inputText.text == "ไม่ถูก" || inputText.text == "ไม่ถูกต้อง" || inputText.text == "ไม่ได้")
             { 
                 anim.SetTrigger("No");
 
@@ -1293,20 +1298,23 @@ public class SearchAnimation : MonoBehaviour
                 anim.SetTrigger("Lonely");
 
             }
-            else if (inputText.text == "โชคดี")
+            else if (inputText.text == "รู้สึกโชคดี")
             { 
                 anim.SetTrigger("GoodLuck");
-                transform.position = new Vector3(1f, -99f, 184f);
             }
 
             else
             {
-                    anim.SetTrigger("Start");
+                messageText.gameObject.SetActive(true);
+
+                anim.SetTrigger("Start");
             }
 
             yield return new WaitForSeconds(1.0f);
             
             anim.SetTrigger("Start");
+            messageText.gameObject.SetActive(false);
+
             transform.position = new Vector3(1f, -99f, 184f);
 
 

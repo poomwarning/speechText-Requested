@@ -19,7 +19,7 @@ public class SampleSpeechToText : MonoBehaviour
 
     void Start()
     {
-        Setting("en-US");
+        Setting("th-TH");
         loading.SetActive(false);
         SpeechToText.Instance.onResultCallback = OnResultSpeech;
 #if UNITY_ANDROID
